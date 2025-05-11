@@ -2,5 +2,4 @@
 str1 = "Holberton"
 str2 = "School"
 str1 = str1 + " " + str2
-# Concatenating str1 and str2 to print
-print(f"Welcome to {str1} {str2}!")
+print(f"Welcome to {str1}!")
