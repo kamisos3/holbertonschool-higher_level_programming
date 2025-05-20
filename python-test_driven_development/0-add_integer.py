@@ -15,6 +15,6 @@ def add_integer(a, b=98):
         a = int(a)
         b = int(b)
     except OverflowError:
-        raise OverflowError("cannot convert a float infinty to integer")
+        raise OverflowError("cannot convert a float infinity to integer")
 
     return a + b
