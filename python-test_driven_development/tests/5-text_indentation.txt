@@ -1,0 +1,12 @@
+# Valid text
+text_indentation("Hello. How are you? Fine: thanks.") =>
+Hello.
+
+How are you?
+
+Fine:
+
+thanks.
+
+# Invalid input
+text_indentation(123) => TypeError: text must be a string
