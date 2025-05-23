@@ -13,7 +13,7 @@ class Square:
     def size(self):
         """Retrieves squares size"""
         return self.__size
-   
+
     @size.setter
     def size(self, value):
         """Sets square size validated"""
@@ -26,7 +26,7 @@ class Square:
     def area(self):
         """Calculates square area and returns it"""
         return self.__size ** 2
-    
+
     def my_print(self):
         """Print square"""
         if self.__size == 0:
