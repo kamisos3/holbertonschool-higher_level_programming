@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module defines square"""
 
+
 class Square:
     """Represents square with size ans position attributes"""
 
@@ -29,7 +30,7 @@ class Square:
         return self.__position
 
     @position.setter
-    def position(self,value):
+    def position(self, value):
         """Set the position of square"""
         if (
             not isinstance(value, tuple)
