@@ -5,7 +5,7 @@ This module defines a function to divide elements of a matrix.
 
 
 def matrix_divided(matrix, div):
-    # Check if matrix is a list of lists of integers or floats
+    """Divides elements of a matrix by divisor"""
     if not isinstance(matrix, list):
         raise TypeError
         ("matrix must be a matrix (list of lists) of integers/floats")
