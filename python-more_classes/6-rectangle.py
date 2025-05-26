@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Module defines a square"""
+"""Module defines rectangle"""
 
 
 class Rectangle:
     """Represents a rectangle."""
-    
+
     number_of_instances = 0  # Public class attribute
 
     def __init__(self, width=0, height=0):
