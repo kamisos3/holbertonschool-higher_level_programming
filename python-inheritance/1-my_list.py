@@ -7,4 +7,5 @@ class MyList(list):
 
     def print_sorted(self):
         """Prints the list sorted ascending"""
+        sorted_list = sorted(self)
         print(sorted(self))
