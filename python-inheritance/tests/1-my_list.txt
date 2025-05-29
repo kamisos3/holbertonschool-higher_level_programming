@@ -17,3 +17,6 @@
 >>> original_list = MyList([2, 1])
 >>> original_list.print_sorted()
 [1, 2]
+>>> original_list = MyList([1, 2, 3])
+>>> original_list.print_sorted()
+[3, 2, 1]
