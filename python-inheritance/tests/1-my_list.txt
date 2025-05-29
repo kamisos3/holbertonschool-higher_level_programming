@@ -15,8 +15,5 @@
 >>> empty_list.print_sorted()
 []
 >>> original_list = MyList([2, 1])
->>> sorted_list = original_list.print_sorted()
->>> sorted_list
+>>> original_list.print_sorted()
 [1, 2]
->>> sorted_list is original_list
-False
