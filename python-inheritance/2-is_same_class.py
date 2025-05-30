@@ -15,7 +15,7 @@ def is_same_class(obj, a_class):
     class SubClass(MyClass):
 
         a = MyClass()
-        b = MyClass()
+        b = SubClass()
 
     print(isinstance(a, MyClass))   # Should print True
     print(isinstance(b, SubClass))   # Should print True
