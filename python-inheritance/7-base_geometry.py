@@ -5,7 +5,7 @@
 class BaseGeometry:
     """Defines class BaseGeometry and instance methods"""
 
-    def integer(self):
+    def area(self):
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
