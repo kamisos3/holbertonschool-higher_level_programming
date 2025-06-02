@@ -6,7 +6,7 @@ class BaseGeometry:
     """Defines class BaseGeometry and instance methods"""
 
     def area(self):
-        raise Exception("area() is not implemented")
+        raise NotImplementedError("area() is not implemented")
 
     def integer_validator(self, name, value):
         if type(value) is not int:

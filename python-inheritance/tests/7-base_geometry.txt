@@ -24,3 +24,8 @@ True
 ... except Exception as e:
 ...    	print("[{}] {}".format(type(e).__name__, e))
 [ValueError] distance must be greater than 0
+
+>>> bg.area()
+Traceback (most recent call last):
+...
+NotImplementedError: area() is not implemented
