@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Module defines abstract class"""
 
 from abc import ABC, abstractmethod
