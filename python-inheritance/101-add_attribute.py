@@ -1,4 +1,4 @@
-#!/usr/bin/pyhton3
+#!/usr/bin/python3
 """Module aads a new attribute to object if possible"""
 
 
