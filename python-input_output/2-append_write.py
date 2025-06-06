@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Module appends a string to the end of the file and returns # of characters added"""
+"""
+Module appends a string to the end of the file
+and returns # of characters added
+"""
 
 
 def append_write(filename="", text=""):
