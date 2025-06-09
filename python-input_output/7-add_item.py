@@ -12,7 +12,7 @@ try:
     items = load_from_json_file(filename)
     if not isinstance(items, list):
 
-            items = []
+        items = []
 except Exception:
 
     items = []
