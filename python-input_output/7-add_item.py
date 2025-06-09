@@ -8,11 +8,17 @@ load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 filename = "add_item.json"
 
-if os.path.exists(filename):
+try:
     items = load_from_json_file(filename)
-else:
+    if not isinstance(items, list):
+
+            items = []
+except Exception:
+
     items = []
 # Add arguments to the list
 
 items.extend(sys.argv[1:])
 # Saves list to file
+
+save_to_json_file(items, filename)
