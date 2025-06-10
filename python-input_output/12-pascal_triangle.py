@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module prints triangle"""
 
+
 def pascal_triangle(n):
     """Returns list of lists of integers"""
     if n <= 0:
