@@ -12,10 +12,11 @@ class SimpleAPIHandler(http.server.BaseHTTPRequestHandler):
         print("Received GET request for:", self.path)
 
         if self.path == "/":
+            response = "Hello, this is a simple API!"
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!\n")
+            self.wfile.write(response.encode('utf-8'))
         elif self.path == "/data":
             self.send_response(200)
             self.send_header("Content-type", "application/json")
