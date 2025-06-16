@@ -52,4 +52,4 @@ if __name__ == "__main__":
         print("Try changing the port of killing conflicting process", file=sys.stderr)
         sys.exit(1)
     except KeyboardInterrupt:
-        print("\nServer stopped by user")
+        print("Server stopped by user")
