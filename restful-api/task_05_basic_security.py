@@ -2,17 +2,18 @@
 """Adding security and authentication using API"""
 
 from flask import Flask, jsonify, request
-from werkzeug.security import generate_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import (
     JWTManager, create_access_token,
     jwt_required, get_jwt_identity
 )
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "super-secret-key"
+app.config['SECRET_KEY'] = 'super-secret-key'
+auth = HTTPBasicAuth()
 jwt = JWTManager(app)
-basic_auth = HTTPBasicAuth()
 
 users = {
     "user1": {
@@ -29,18 +30,46 @@ users = {
 
 @app.route('/')
 def home():
-    return "Flask Security API is running! Use /basic-protected, /logic, etc."
+    return "Welcome to Flask Security API!"
 
-@basic_auth.verify_password
+@auth.verify_password
 def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
         return username
     return None
 
-@basic_auth.error_handler
-def basic_auth_error(status):
-    return jsonify({"error": "Unauthorized"}), status
+@app.route('/basic-protected', methods=['GET'])
+@auth.login_required
+def basic_protected():
+    return jsonify({"message": "Basic Auth: Access Granted"}), 200
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
+
+    user = user.get(username)
+    if not user or not check_password_hash(user['password'], password):
+        return jsonify({"error": "Invalid credentials"}), 401
+
+    additional_claims = {"role": user["role"]}
+    access_token = create_access_token(identity=username, additional_claims=additional_claims)
+    return jsonify(access_token=access_token), 200
+
+@app.route('/jwt-protected', methods=['GET'])
+@jwt_required()
+def jwt_protected():
+    return jsonify({"message": "JWT Auth: Access Granted"}), 200
+
+@app.route('/admin-only', methods=['GET'])
+def admin_only():
+    claims = get_jwt_identity()
+    user = users.get(claims)
+    if user and user["role"] == "admin":
+        return jsonify({"message": "Admin Access: Granted"}), 200
+    return jsonify({"error": "Admin acccess required"}), 403
 
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
@@ -48,45 +77,19 @@ def handle_unauthorized_error(err):
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
-    return jsonify({"error": "Ivalid token"}), 401
+    return jsonify({"error": "Invalid token"}), 401
 
-@app.route('/basic-protected')
-@basic_auth.login_required
-def basic_protected():
-    return "Basic Auth Access Granted"
+@jwt.expired_token_loader
+def handle_expired_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has expired"}), 401
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "No data provided"}), 400
+@jwt.revoked_token_loader
+def handle_revoked_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has been revoked"}), 401
 
-    username = data.get('username')
-    password = data.get('password')
-
-    if not username or not password:
-        return jsonify({"error": "Username and password required"}), 400
-
-    user = users.get(username)
-    if not user or not check_password_hash(user['password'], password):
-        return jsonify({"error": "Invalid credentials"}), 401
-
-    access_token = create_access_token(
-        idenity=username,
-        additional_claims={"role": user['role']}
-    )
-    return jsonify(access_token=access_token)
-
-@app.route('/jwt-protected')
-@jwt_required()
-def admin_only():
-    current_user = get_jwt_identity()
-    user = users.get(current_user)
-
-    if not user or user.get('role') != 'admin':
-        return jsonify({"error": "Admin access required"}), 403
-
-    return "Admin Access: Granted"
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)
