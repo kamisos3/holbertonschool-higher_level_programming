@@ -16,16 +16,8 @@ auth = HTTPBasicAuth()
 jwt = JWTManager(app)
 
 users = {
-    "user1": {
-        "username": "user1",
-        "password": generate_password_hash("password"),
-        "role": "user"
-    },
-    "admin1": {
-        "username": "admin1",
-        "password": generate_password_hash("password"),
-        "role": "admin"
-    }
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
 }
 
 @app.route('/')
@@ -39,7 +31,7 @@ def verify_password(username, password):
         return username
     return None
 
-@app.route('/basic-protected', methods=['GET'])
+@app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
     return jsonify({"message": "Basic Auth: Access Granted"}), 200
@@ -50,7 +42,8 @@ def login():
     username = data.get("username")
     password = data.get("password")
 
-    user = user.get(username)
+    user = users.get(username)
+    
     if not user or not check_password_hash(user['password'], password):
         return jsonify({"error": "Invalid credentials"}), 401
 
@@ -64,6 +57,7 @@ def jwt_protected():
     return jsonify({"message": "JWT Auth: Access Granted"}), 200
 
 @app.route('/admin-only', methods=['GET'])
+@jwt_required()
 def admin_only():
     claims = get_jwt_identity()
     user = users.get(claims)
@@ -92,4 +86,4 @@ def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host= '0.0.0.0', port=5000, debug=True)
