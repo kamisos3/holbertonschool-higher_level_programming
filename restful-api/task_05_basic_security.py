@@ -30,6 +30,10 @@ def verify_password(username, password):
     if user and check_password_hash(user['password'], password):
         return True
     return False
+@auth.error_handler
+def unauthorized():
+    return jsonify({"error": "unauthorized"}), 401
+
 
 @app.route('/basic-protected')
 @auth.login_required
