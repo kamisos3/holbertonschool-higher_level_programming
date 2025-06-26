@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module serializes data"""
 import pickle
-
+import os
 
 class CustomObject:
     """Defnes class for CustomObject"""
@@ -19,24 +19,20 @@ class CustomObject:
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
+            print(f"[OK] Serialized to {os.path.abspath(filename)}")
+            return True
         except Exception as e:
+            print(f"[ERROR] serialize(): {e}")
+            return False
+
+    @classmethod
+    def deserialize(cls, filename):
+        try:
+            print(f"[INFO] Attempting to read {os.path.abspath(filename)}")
+            with open(filename, 'rb') as file:
+                    obj = pickle.load(file)
+            print("[OK] Deserialized succesfully")
+            return obj
+        except Exception as e:
+            print(f"[ERROR] deserialize(): {e}")
             return None
-
-@classmethod
-def deserialize(cls, filename):
-    try:
-        with open(filename, 'rb') as file:
-            return picke.load(file)
-    except Exception:
-        return None
-
-if __name__ == "__main__":
-    o = CustomObject("Alice", 30, True)
-    o.serialize("test.bin")
-    loaded = CustomObject.deserialize("test.bin")
-    if loaded:
-        print(f"Name: {loaded.name}")
-        print(f"Age: {loaded.age}")
-        print(f"Is student: {loaded.is_student}")
-    else:
-        print("Reload failed")
