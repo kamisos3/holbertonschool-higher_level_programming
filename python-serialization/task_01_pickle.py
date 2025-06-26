@@ -22,10 +22,10 @@ class CustomObject:
         except Exception as e:
             return None
 
-        @classmethod
-        def deserialize(cls, filename):
-            try:
-                with open(filename, 'rb') as file:
-                    return picke.load(file)
-            except Exception as e:
-                return None
+@classmethod
+    def deserialize(cls, filename):
+        try:
+            with open(filename, 'rb') as file:
+                return picke.load(file)
+        except Exception as e:
+            return None
