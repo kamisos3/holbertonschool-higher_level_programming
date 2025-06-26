@@ -27,5 +27,16 @@ def deserialize(cls, filename):
     try:
         with open(filename, 'rb') as file:
             return picke.load(file)
-    except Exception as e:
+    except Exception:
         return None
+
+if __name__ == "__main__":
+    o = CustomObject("Alice", 30, True)
+    o.serialize("test.bin")
+    loaded = CustomObject.deserialize("test.bin")
+    if loaded:
+        print(f"Name: {loaded.name}")
+        print(f"Age: {loaded.age}")
+        print(f"Is student: {loaded.is_student}")
+    else:
+        print("Reload failed")
