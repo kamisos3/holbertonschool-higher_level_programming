@@ -50,7 +50,7 @@ MySQL is system to manage relational database, it's required to install this in 
 
 		sudo mysql
 
-- Type in your user password and MYSQL interface will open.
+- Type in your user password and MySQL interface will open.
 
 ▶   **Author**
 
