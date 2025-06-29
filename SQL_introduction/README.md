@@ -40,15 +40,15 @@ MySQL is system to manage relational database, it's required to install this in 
 
 - Download MySQL by writting on your terminal:
 
-	sudo apt install mysql-server
+		sudo apt install mysql-server
 
 - Verify your download with:
 
-	mysql --version
+		mysql --version
 
 - To activate MySQL type this on your terminal:
 
-	sudo mysql
+		sudo mysql
 
 - Type in your user password and MYSQL interface will open.
 
