@@ -18,11 +18,11 @@ if __name__ == "__main__":
     )
 
 cur = db.cursor()
-
  # Picks letter 'N' states in SQL to output
 cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
 
-for row in cur.fetchall():
+rows = cur.fetchall()
+for row in rows:
     print(row)
 
 # Exits connection
