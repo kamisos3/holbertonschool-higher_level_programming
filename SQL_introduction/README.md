@@ -36,7 +36,7 @@ MySQL is system to manage relational database, it's required to install this in 
 		 book VARCHAR(256)
         );
 
-▶  **Installation**
+▶   **Installation**
 
 - Download MySQL by writting on your terminal:
 
