@@ -8,6 +8,7 @@ if __name__ == "__main__":
     password = sys.argv[2]
     db_name = sys.argv[3]
 
+    # SQL connection
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -21,9 +22,9 @@ cur = db.cursor()
  # Picks letter 'N' states in SQL to output
 cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
 
-rows = cur.fetchall()
-for row in rows:
+for row in cur.fetchall():
     print(row)
 
+# Exits connection
 cur.close()
 db.close()
