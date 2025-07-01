@@ -5,30 +5,17 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
+if __name__ == "__main__":
+    username, password, db_name = sys.argv[1:4]
 
-def main():
-    if len(sys.argv) != 4:
-        print(f"Usage: {sys.argv[0]} <username> <password> <database_name>")
-        sys.exit(1)
-
-    user, password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
-    engine = create_engine(
-        f"mysql+mysqldb://{user}:{password}@localhost:3306/{db_name}",
-        pool_pre_ping=True
-    )
-    Base.metadata.create_all(engine)
-
+    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost/{db_name}', pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    new_state = State(name="Louisiana")
-    session.add(new_state)
-    session.commit()
+    state = session.query(State).filter(State.id == 2).first()
 
-    print(new_state.id)
+    if state:
+        state.name = "New Mexico"
+        session.commit()
 
     session.close()
-
-
-if __name__ == "__main__":
-    main()
