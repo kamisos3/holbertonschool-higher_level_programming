@@ -21,8 +21,6 @@ The JavaScript Warmup project contains a series of exercises that cover the basi
 
 ▶ **Concepts**
 
-Below are explanations of some key JavaScript methods and features used in this project:
-
 - **console.log()**  
   Prints output to the console, useful for debugging and displaying results.
 
