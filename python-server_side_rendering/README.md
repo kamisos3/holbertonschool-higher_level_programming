@@ -1,6 +1,7 @@
 # Python Server-Side Rendering
 
 ▶ **Introduction**
+
 This project demonstrates Python Server-Side Rendering (SSR) using Flask and Jinja2 templates. SSR is used to generate dynamic HTML content on the server before sending it to the client, enabling better SEO, faster initial page loads, and easier integration with backend data sources. The project showcases how Python can be used for SSR to build web applications that render HTML pages dynamically from templates and data sources such as JSON, CSV, and SQLite databases.
 
 ▶ **Table of Contents**
