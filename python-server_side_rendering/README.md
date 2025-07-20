@@ -15,7 +15,7 @@ This project demonstrates Python Server-Side Rendering (SSR) using Flask and Jin
 
 ► Building Flask web applications with Jinja2 templates
 ► Rendering HTML pages with dynamic data from files and databases
-► Implementing reusable template components (header, footer)
+► Implementing reusable template components; header, footer
 ► Displaying and filtering data from JSON, CSV, and SQLite sources
 ► Error handling for missing data and invalid requests
 
