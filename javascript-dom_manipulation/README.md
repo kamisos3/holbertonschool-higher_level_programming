@@ -19,7 +19,7 @@ This project demonstrates practical usage of JavaScript to manipulate the DOM. I
 
 - **DOM (Document Object Model):** A programming interface for HTML and XML documents, representing the page so programs can change the document structure, style, and content.
 - **Element Selection:** Using methods like `document.querySelector` to select HTML elements for manipulation.
-- **Event Handling:** Responding to user actions (e.g., clicks) using event listeners such as `addEventListener`.
+- **Event Handling:** Responding to user actions using event listeners such as `addEventListener`.
 - **Class Manipulation:** Adding, removing, or toggling CSS classes on elements to change their appearance or behavior.
 - **Dynamic Content Creation:** Creating and appending new elements to the DOM using methods like `createElement` and `appendChild`.
 - **Fetch API:** Retrieving data from external sources asynchronously and updating the DOM with the results.
@@ -42,7 +42,7 @@ document.querySelector('#red_header').addEventListener('click', function() {
 Clone this repository in your terminal:
 
 ```bash
-git clone https://github.com/kamisos3/holbertonschool-higher_level_programming.git
+git clone https://github.com/kamisos3/holbertonschool-higher_level_programming/tree/main/javascript-dom_manipulation
 ```
 
 ▶ **Author**
