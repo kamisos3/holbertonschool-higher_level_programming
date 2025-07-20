@@ -13,6 +13,7 @@ JavaScript DOM Manipulation refers to the process of using JavaScript to interac
 - [Author](#author)
 
 ▶ **Overview** 
+
 This project demonstrates practical usage of JavaScript to manipulate the DOM. It covers selecting elements, updating styles and text, handling user events, dynamically adding elements, toggling classes, and fetching data from APIs to update the page content. Each script in this folder corresponds to a specific DOM manipulation task, providing hands-on examples for learning and reference.
 
 ▶ **Concepts**
